@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(28, 20px);
+    grid-gap: 1px;
+    width: 587px;
+    height: 587px;
+    border: solid rgb(162, 154, 197);
+}
+
+.grid div {
+    width: 20px;
+    height: 20px;
+}
+
+.wall {
+    background-color: blue;
+}
+
+.empty {
+    background-color: black;
+}
+
+h2 {
+    color: white;
+}
+
+h3 {
+    margin-bottom: 10px;
+    color: white;
+}
