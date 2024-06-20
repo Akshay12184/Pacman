@@ -5,6 +5,7 @@ body {
     height: 100vh;
     margin: 0;
     background-color: black;
+    color: white;
 }
 
 .container {
@@ -15,16 +16,17 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(28, 20px);
+    grid-template-columns: repeat(24, 20px);
     grid-gap: 1px;
-    width: 587px;
-    height: 587px;
-    border: solid rgb(162, 154, 197);
+    width: 503px;
+    height: 503px;
+    border: solid 2px rgb(255, 255, 255);
+    border-width: 2px 2px 2px 2px;
+    padding: 1px;
 }
-
 .grid div {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .wall {
