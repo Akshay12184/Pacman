@@ -45,3 +45,8 @@ h3 {
     margin-bottom: 10px;
     color: white;
 }
+
+.player {
+    background-color: yellow;
+    border-radius: 50%;
+}
