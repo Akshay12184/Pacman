@@ -49,3 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createGrid();
 });
+
+
+//  pellets have 15 point value 
+// power pellet 40 points 
+// eaten ghost 200 points 
