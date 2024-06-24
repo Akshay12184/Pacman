@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gridContainer = document.querySelector('.grid');
     const scoreDisplay = document.getElementById('score');
 
-    // Define initial player position (on an empty cell)
-    let playerPosition = { x: 0, y: 1 }; // Moved to (0, 1) as an example
+    let playerPosition = { x: 0, y: 1 };
 
     const grid = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
