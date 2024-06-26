@@ -9,25 +9,22 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(28, 18px);
     grid-gap: 1px;
-    width: 508px;
-    height: 508px;
-    border: solid 2px rgb(255, 255, 255);
+    width: fit-content;
+    border: 2px solid white;
     padding: 1px;
 }
 
 .grid div {
     width: 18px;
     height: 18px;
-    border-radius: 2px;
 }
 
 .wall {
@@ -38,16 +35,17 @@ body {
     background-color: black;
 }
 
-h2 {
-    color: white;
-}
-
-h3 {
-    margin-bottom: 10px;
-    color: white;
-}
-
 .player {
     background-color: yellow;
     border-radius: 50%;
+}
+
+h2, h3 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+p {
+    color: white;
+    margin: 5px 0;
 }
