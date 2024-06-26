@@ -6,11 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const grid = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1],
-        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+        [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
         [1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0],
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0],
         [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1],
         [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,64 +27,62 @@ document.addEventListener('DOMContentLoaded', () => {
         [0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
         [1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ];
 
     const createGrid = () => {
-        grid.forEach((row, rowIndex) => {
-            row.forEach((cell, colIndex) => {
+        grid.forEach((row) => {
+            row.forEach((cell) => {
                 const cellDiv = document.createElement('div');
-
-                if (cell === 1) {
-                    cellDiv.classList.add('wall');
-                } else if (cell === 0) {
-                    cellDiv.classList.add('empty');
-                }
-
-                // Add player initial position
-                if (rowIndex === playerPosition.y && colIndex === playerPosition.x) {
-                    cellDiv.classList.add('player');
-                }
-
+                cellDiv.classList.add(cell === 1 ? 'wall' : 'empty');
                 gridContainer.appendChild(cellDiv);
             });
         });
+        renderPlayer();
     };
 
     const renderPlayer = () => {
-        const cells = gridContainer.querySelectorAll('div');
-        cells.forEach((cell, index) => {
-            const rowIndex = Math.floor(index / grid[0].length);
-            const colIndex = index % grid[0].length;
-
-            if (rowIndex === playerPosition.y && colIndex === playerPosition.x) {
-                cell.classList.add('player');
-            } else {
-                cell.classList.remove('player');
-            }
+        gridContainer.querySelectorAll('.player').forEach(cell => {
+            cell.classList.remove('player');
         });
+
+        const playerCell = gridContainer.querySelector(`.grid div:nth-child(${playerPosition.y * grid[0].length + playerPosition.x + 1})`);
+        playerCell.classList.add('player');
     };
 
     const movePlayer = (dx, dy) => {
         const newX = playerPosition.x + dx;
         const newY = playerPosition.y + dy;
 
-        if (newX >= 0 && newX < grid[0].length && newY >= 0 && newY < grid.length && grid[newY][newX] !== 1) {
+        if (isValidMove(newX, newY)) {
             playerPosition.x = newX;
             playerPosition.y = newY;
             renderPlayer();
+        } else {
+            console.log(`Cannot move to: (${newX}, ${newY})`);
         }
     };
 
+    const isValidMove = (x, y) => {
+        return x >= 0 && x < grid[0].length && y >= 0 && y < grid.length && grid[y][x] !== 1;
+    };
+
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'w') {
-            movePlayer(0, -1);
-        } else if (e.key === 'a') {
-            movePlayer(-1, 0);
-        } else if (e.key === 's') {
-            movePlayer(0, 1);
-        } else if (e.key === 'd') {
-            movePlayer(1, 0);
+        switch (e.key) {
+            case 'w':
+                movePlayer(0, -1);
+                break;
+            case 'a':
+                movePlayer(-1, 0);
+                break;
+            case 's':
+                movePlayer(0, 1);
+                break;
+            case 'd':
+                movePlayer(1, 0);
+                break;
+            default:
+                break;
         }
     });
 

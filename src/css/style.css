@@ -16,17 +16,18 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(24, 20px);
+    grid-template-columns: repeat(28, 18px);
     grid-gap: 1px;
-    width: 503px;
-    height: 503px;
+    width: 508px;
+    height: 508px;
     border: solid 2px rgb(255, 255, 255);
-    border-width: 2px 2px 2px 2px;
     padding: 1px;
 }
+
 .grid div {
     width: 18px;
     height: 18px;
+    border-radius: 2px;
 }
 
 .wall {
