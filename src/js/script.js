@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gridContainer = document.querySelector('.grid');
     const scoreDisplay = document.getElementById('score');
 
-    let playerPosition = { x: 0, y:1, z:0 };
+    let playerPosition = { x: 1, y: 1, z: 0 };
+    let score = 0;
 
     const grid = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         [1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -32,9 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.forEach((row, rowIndex) => {
             row.forEach((cell, colIndex) => {
                 const cellDiv = document.createElement('div');
-                cellDiv.classList.add(cell === 1 ? 'wall' : 'empty');
+                if (cell === 1) {
+                    cellDiv.classList.add('wall');
+                } else if (cell === 0) {
+                    cellDiv.classList.add('empty');
+                    const random = Math.random();
+                    if (random < 0.1) {
+                        cellDiv.classList.add('small-pellet');
+                    } else if (random < 0.15) {
+                        cellDiv.classList.add('power-pellet');
+                    }
+                }
                 gridContainer.appendChild(cellDiv);
-    
+
                 if (rowIndex === playerPosition.y && colIndex === playerPosition.x) {
                     cellDiv.classList.add('player');
                     cellDiv.style.zIndex = playerPosition.z;
@@ -47,21 +58,30 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.querySelectorAll('.player').forEach(cell => {
             cell.classList.remove('player');
         });
-    
+
         const playerCell = gridContainer.querySelector(`.grid div:nth-child(${playerPosition.y * grid[0].length + playerPosition.x + 1})`);
+        if (playerCell.classList.contains('small-pellet')) {
+            score += 10;
+            playerCell.classList.remove('small-pellet');
+        } else if (playerCell.classList.contains('power-pellet')) {
+            score += 50;
+            playerCell.classList.remove('power-pellet');
+        }
+
         playerCell.classList.add('player');
         playerCell.style.zIndex = playerPosition.z;
+
+        scoreDisplay.innerText = `Score: ${score}`;
     };
-    
+
     const calculateNewZIndex = () => {
         return playerPosition.z;
     };
-    
-    
+
     const movePlayer = (dx, dy) => {
         const newX = playerPosition.x + dx;
         const newY = playerPosition.y + dy;
-    
+
         if (isValidMove(newX, newY)) {
             playerPosition.x = newX;
             playerPosition.y = newY;
@@ -71,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Cannot move to: (${newX}, ${newY})`);
         }
     };
-    
+
     const isValidMove = (x, y) => {
         return x >= 0 && x < grid[0].length && y >= 0 && y < grid.length && grid[y][x] !== 1;
     };
@@ -96,4 +116,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     createGrid();
+    renderPlayer();
 });
