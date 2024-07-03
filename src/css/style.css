@@ -33,6 +33,29 @@ body {
 
 .empty {
     background-color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.small-pellet::before,
+.power-pellet::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.small-pellet::before {
+    width: 4px;
+    height: 4px;
+    background-color: white;
+}
+
+.power-pellet::before {
+    width: 8px;
+    height: 8px;
+    background-color: red;
 }
 
 .player {
