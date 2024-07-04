@@ -3,9 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreDisplay = document.getElementById('score');
 
     let playerPosition = { x: 1, y: 1, z: 0 };
-    let ghosts = [{ x: 14, y: 11, z: 0 }];
+    let ghosts = [
+        { x: 14, y: 11, z: 0, class: 'ghost1' },
+        { x: 15, y: 11, z: 0, class: 'ghost2' },
+        { x: 16, y: 11, z: 0, class: 'ghost3' },
+        { x: 17, y: 11, z: 0, class: 'ghost4' }
+    ];
     let score = 0;
 
+    // the map layout 
     const grid = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -28,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ];
 
+    // logic for what number means what 
     const createGrid = () => {
         grid.forEach((row, rowIndex) => {
             row.forEach((cell, colIndex) => {
@@ -52,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ghosts.forEach(ghost => {
                     if (rowIndex === ghost.y && colIndex === ghost.x) {
-                        cellDiv.classList.add('ghost');
+                        cellDiv.classList.add('ghost', ghost.class);
                         cellDiv.style.zIndex = ghost.z;
                     }
                 });
@@ -82,12 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderGhosts = () => {
         gridContainer.querySelectorAll('.ghost').forEach(cell => {
-            cell.classList.remove('ghost');
+            cell.classList.remove('ghost', 'ghost1', 'ghost2', 'ghost3', 'ghost4');
         });
 
         ghosts.forEach(ghost => {
             const ghostCell = gridContainer.querySelector(`.grid div:nth-child(${ghost.y * grid[0].length + ghost.x + 1})`);
-            ghostCell.classList.add('ghost');
+            ghostCell.classList.add('ghost', ghost.class);
             ghostCell.style.zIndex = ghost.z;
         });
     };
