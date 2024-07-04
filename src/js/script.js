@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreDisplay = document.getElementById('score');
 
     let playerPosition = { x: 1, y: 1, z: 0 };
+    let ghosts = [{ x: 14, y: 11, z: 0 }];
     let score = 0;
 
     const grid = [
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1],
+        [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
@@ -48,6 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     cellDiv.classList.add('player');
                     cellDiv.style.zIndex = playerPosition.z;
                 }
+
+                ghosts.forEach(ghost => {
+                    if (rowIndex === ghost.y && colIndex === ghost.x) {
+                        cellDiv.classList.add('ghost');
+                        cellDiv.style.zIndex = ghost.z;
+                    }
+                });
             });
         });
     };
@@ -72,6 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.innerText = `Score: ${score}`;
     };
 
+    const renderGhosts = () => {
+        gridContainer.querySelectorAll('.ghost').forEach(cell => {
+            cell.classList.remove('ghost');
+        });
+
+        ghosts.forEach(ghost => {
+            const ghostCell = gridContainer.querySelector(`.grid div:nth-child(${ghost.y * grid[0].length + ghost.x + 1})`);
+            ghostCell.classList.add('ghost');
+            ghostCell.style.zIndex = ghost.z;
+        });
+    };
+
     const calculateNewZIndex = () => {
         return playerPosition.z;
     };
@@ -92,6 +112,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isValidMove = (x, y) => {
         return x >= 0 && x < grid[0].length && y >= 0 && y < grid.length && grid[y][x] !== 1;
+    };
+
+    const moveGhosts = () => {
+        ghosts.forEach(ghost => {
+            const possibleMoves = [
+                { x: 0, y: -1 },
+                { x: -1, y: 0 },
+                { x: 0, y: 1 },
+                { x: 1, y: 0 }
+            ];
+
+            let validMoves = possibleMoves.filter(move => {
+                const newX = ghost.x + move.x;
+                const newY = ghost.y + move.y;
+                return isValidMove(newX, newY);
+            });
+
+            if (validMoves.length > 0) {
+                const randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+                ghost.x += randomMove.x;
+                ghost.y += randomMove.y;
+            }
+        });
+
+        renderGhosts();
     };
 
     document.addEventListener('keydown', (e) => {
@@ -115,4 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createGrid();
     renderPlayer();
+    renderGhosts();
+
+    setInterval(moveGhosts, 500);
 });

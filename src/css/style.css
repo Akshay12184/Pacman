@@ -72,3 +72,23 @@ p {
     color: white;
     margin: 5px 0;
 }
+
+.ghost {
+    border-radius: 50%;
+}
+
+.ghost1 {
+    background-color: red;
+}
+
+.ghost2 {
+    background-color: pink;
+}
+
+.ghost3 {
+    background-color: cyan;
+}
+
+.ghost4 {
+    background-color: orange;
+}
