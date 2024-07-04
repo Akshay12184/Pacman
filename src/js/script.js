@@ -171,3 +171,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(moveGhosts, 500);
 });
+//ToDo: 
+// when pacman hits enemy after eaten powerpellet spawn back into the start spawn with an delay on moving for 3 seconds 
