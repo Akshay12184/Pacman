@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ];
 
-    // logic for what number means what 
+    // logic for what number means what and rendering the pellets
     const createGrid = () => {
         grid.forEach((row, rowIndex) => {
             row.forEach((cell, colIndex) => {
@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         cellDiv.classList.add('small-pellet');
                     } else if (random < 1.0) {
                         cellDiv.classList.add('power-pellet');
+                    }
+                    else {
+                        (random < 0.7)
+                        cellDiv.classList.add('berry-pellet')
                     }
                 }
                 gridContainer.appendChild(cellDiv);
@@ -171,5 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(moveGhosts, 500);
 });
+
 //ToDo: 
 // when pacman hits enemy after eaten powerpellet spawn back into the start spawn with an delay on moving for 3 seconds 

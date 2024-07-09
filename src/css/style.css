@@ -55,7 +55,7 @@ body {
 .power-pellet::before {
     width: 8px;
     height: 8px;
-    background-color: red;
+    background-color: rgb(235, 99, 99);
 }
 
 .player {
