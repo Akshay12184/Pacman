@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // rendering pacmam, ghosts and score 
     const renderPlayer = () => {
         gridContainer.querySelectorAll('.player').forEach(cell => {
             cell.classList.remove('player');
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.innerText = `Score: ${score}`;
     };
 
+
     const renderGhosts = () => {
         gridContainer.querySelectorAll('.ghost').forEach(cell => {
             cell.classList.remove('ghost', 'ghost1', 'ghost2', 'ghost3', 'ghost4');
@@ -103,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+
+    // calculating the movements for player and the ghosts 
     const calculateNewZIndex = () => {
         return playerPosition.z;
     };
