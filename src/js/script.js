@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-
     // calculating the movements for player and the ghosts 
     const calculateNewZIndex = () => {
         return playerPosition.z;
