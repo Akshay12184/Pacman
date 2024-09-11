@@ -37,7 +37,8 @@ body {
 }
 
 .small-pellet::before,
-.power-pellet::before {
+.power-pellet::before,
+.berry-pellet::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -56,6 +57,12 @@ body {
     width: 8px;
     height: 8px;
     background-color: rgb(235, 99, 99);
+}
+
+.berry-pellet::before {
+    width: 8px;
+    height: 8px;
+    background-color: chartreuse;
 }
 
 .player {

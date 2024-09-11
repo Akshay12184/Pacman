@@ -44,14 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (cell === 0) {
                     cellDiv.classList.add('empty');
                     const random = Math.random();
-                    if (random < 0.9) {
+                    if (random < 0.5) {
                         cellDiv.classList.add('small-pellet');
-                    } else if (random < 1.0) {
+                    } else if (random >= 0.5 && random < 0.8) {
                         cellDiv.classList.add('power-pellet');
-                    }
-                    else {
-                        (random < 0.7)
-                        cellDiv.classList.add('berry-pellet')
+                    } else if (random >= 0.8 && random <= 1) {
+                        cellDiv.classList.add('berry-pellet');
                     }
                 }
                 gridContainer.appendChild(cellDiv);
