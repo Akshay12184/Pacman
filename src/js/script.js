@@ -177,5 +177,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //ToDo: 
 // when pacman hits enemy after eaten powerpellet spawn back into the start spawn with an delay on moving for 3 seconds 
-// fixig an issue with pacman having infinte dash speed.
-// fixxing pacman not phasing through the ghosts and dieng.
+// fixing an issue with pacman having infinte dash speed.
+// fixing pacman not phasing through the ghosts and dieng.
