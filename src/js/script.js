@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const random = Math.random();
                     if (random < 0.9) {
                         cellDiv.classList.add('small-pellet');
-                    } else if (random >= 0.9 && random < 1.0) {
+                    } else if (random >= 0.95 && random < 1.0) {
                         cellDiv.classList.add('power-pellet');
                     }
                 }
@@ -172,8 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPlayer();
     renderGhosts();
 
-    setInterval(moveGhosts, 500);
+    setInterval(moveGhosts, 600);
 });
 
 //ToDo: 
 // when pacman hits enemy after eaten powerpellet spawn back into the start spawn with an delay on moving for 3 seconds 
+// fixig an issue with pacman having infinte dash speed.
+// fixxing pacman not phasing through the ghosts and dieng.
